@@ -29,6 +29,17 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="stopsagiEntities- 配置" Order="1">
+          <Destination Path="Server=0e7ce515-116b-446d-839b-a1de01404c1e.sqlserver.sequelizer.com%3bDatabase=db0e7ce515116b446d839ba1de01404c1e%3bUser ID=zdsmqrfklmlckdgh%3bPassword=cprBNqR86uM5juMMxhXqwvCkcLUVyWtDmLoSYLsPySFsdrpfZWPqta5NTfybC5Gh%3b" />
+          <Object Type="DbFullSql">
+            <PreSource Path="Data Source=|DataDirectory|\stopsagi.sdf" ScriptSchema="True" ScriptData="True" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Debug\AutoScripts\stopsagiEntities- 配置_SchemaAndData.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -369,6 +380,7 @@
       <DependentUpon>StopSagiContext.edmx</DependentUpon>
       <LastGenOutput>StopSagiContext.cs</LastGenOutput>
     </Content>
+    <None Include="Properties\PublishProfiles\StopSagi.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

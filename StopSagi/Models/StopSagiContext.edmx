@@ -4,9 +4,9 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="stopsagiModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="stopsagiModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="stopsagiModelStoreContainer">
-          <EntitySet Name="blackList" EntityType="stopsagiModel.Store.blackList" store:Type="Tables" />
+          <EntitySet Name="blackList" EntityType="stopsagiModel.Store.blackList" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
         <EntityType Name="blackList">
           <Key>
@@ -16,12 +16,11 @@
           <Property Name="address" Type="nvarchar" MaxLength="1000" />
           <Property Name="comment" Type="nvarchar" MaxLength="3000" />
           <Property Name="address_type" Type="int" />
-          <Property Name="ins_date" Type="datetime" />
-          <Property Name="upd_date" Type="datetime" />
+          <Property Name="ins_date" Type="date" />
+          <Property Name="upd_date" Type="date" />
           <Property Name="upd_usr" Type="nvarchar" MaxLength="100" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="stopsagiModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -32,13 +31,13 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Guid" Nullable="false" />
-          <Property Name="address" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
-          <Property Name="comment" Type="String" MaxLength="3000" Unicode="true" FixedLength="false" />
-          <Property Name="address_type" Type="Int32" />
-          <Property Name="ins_date" Type="DateTime" Precision="3" />
-          <Property Name="upd_date" Type="DateTime" Precision="3" />
-          <Property Name="upd_usr" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Type="Guid" Name="id" Nullable="false" />
+          <Property Type="String" Name="address" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="comment" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="address_type" />
+          <Property Type="DateTime" Name="ins_date" Precision="0" />
+          <Property Type="DateTime" Name="upd_date" Precision="0" />
+          <Property Type="String" Name="upd_usr" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -49,13 +48,13 @@
           <EntitySetMapping Name="blackList">
             <EntityTypeMapping TypeName="stopsagiModel.blackList">
               <MappingFragment StoreEntitySet="blackList">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="comment" ColumnName="comment" />
-                <ScalarProperty Name="address_type" ColumnName="address_type" />
-                <ScalarProperty Name="ins_date" ColumnName="ins_date" />
-                <ScalarProperty Name="upd_date" ColumnName="upd_date" />
                 <ScalarProperty Name="upd_usr" ColumnName="upd_usr" />
+                <ScalarProperty Name="upd_date" ColumnName="upd_date" />
+                <ScalarProperty Name="ins_date" ColumnName="ins_date" />
+                <ScalarProperty Name="address_type" ColumnName="address_type" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="8b726bb67c3b428baeab3a49d1e2e0ff" Name="ダイアグラム1">
-        <EntityTypeShape EntityType="stopsagiModel.blackList" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="stopsagiModel.blackList" Width="1.5" PointX="4.436368063295431" PointY="7.1653225604283266" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
