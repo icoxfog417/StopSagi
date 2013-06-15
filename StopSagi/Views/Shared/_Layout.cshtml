@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+      body {
+        padding-top: 50px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+</head>
+<body data-spy="scroll" data-target=".navbar">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <ul class="nav ">
+                <li><a href="/Default"><i class="icon-home icon-white"></i>トップ</a></li>
+            </ul>
+        
+            <div class="nav-collapse collapse pull-right">
+                <ul class="nav ">
+                    <li @if(ViewBag.Title == "Enemy"){
+                             @:class="active" 
+                    }><a href="/Default/Enemy">1.電話の相手</a></li>
+                    <li @if(ViewBag.Title == "Address"){
+                             @:class="active" 
+                    }><a href="/Default/Address">2.相手の連絡先</a></li>
+                    <li @if(ViewBag.Title == "Consultant"){
+                             @:class="active" 
+                    }><a href="/Default/Consultant">3.相談窓口</a></li>
+                    <li @if(ViewBag.Title == "Prevention"){
+                             @:class="active" 
+                    }><a href="/BlackList/Create">4.予防方法</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+        </div>
+    </div>
+    
+    <div class="container">
+
+        @RenderBody()
+
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script>
+        $('#navbar').scrollspy()
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

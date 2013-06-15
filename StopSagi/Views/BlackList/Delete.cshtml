@@ -1,0 +1,23 @@
+﻿@model StopSagi.Models.blackList
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>この情報を削除しますか?</h3>
+<fieldset>
+    <legend>@Html.DisplayFor(model => model.address)</legend>
+
+    <div class="display-field">
+        @Html.DisplayFor(model => model.comment)
+    </div>
+
+</fieldset>
+<br/><br/>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="　削除　" /> |
+        @Html.ActionLink("戻る", "Address","Default",null,null)
+    </p>
+}

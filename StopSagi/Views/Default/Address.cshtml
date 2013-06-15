@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "Address";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="address">
+    <thead>
+        <tr>
+            <th>種類</th>
+            <th>電話/口座番号/住所</th>
+            <th>コメント</th>
+            <th>更新日付</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model) 
+        { 
+            <tr>
+                <td>@if(item.address_type==1){
+                        <span>電話番号</span>
+                    }
+                    else if (item.address_type == 2)
+                    {
+                        <span>口座番号</span>
+                    } 
+                    else if (item.address_type == 3)
+                    {
+                        <span>住所</span>
+                    } 
+                </td>
+                <td>@Html.Encode(item.address) </td>
+                <td>@Html.Encode(item.comment) </td>
+                <td>@Html.Encode(item.upd_date.ToString("yyyy/MM/dd")) </td>
+                <td>
+                    @Html.ActionLink("編集", "Edit", "BlackList",new { id=item.id },null) |
+                    @Html.ActionLink("削除", "Delete", "BlackList", new { id=item.id },null)
+                </td>
+            </tr>
+        }
+        <tbody>
+    </table>
+    
+
+@section scripts{
+    <link href="~/Scripts/DataTables-1.9.4/DT_bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/DataTables-1.9.4/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/DataTables-1.9.4/DT_bootstrap.js"></script>
+    <script>
+        /* Table initialisation */
+        var oTable = null;
+        $(document).ready(function () {
+
+            oTable = $('#address').dataTable({
+		    "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+		    "bScrollInfinite": true,
+		    "bScrollCollapse": true,
+		    "bPaginate": false,
+		    "sScrollY": setHeight(),
+		    "oLanguage": {
+		        "oPaginate": {
+		            "sFirst": "最初",
+		            "sLast": "最後",
+		            "sPrevious": "前",
+		            "sNext": "次"
+		        },
+		        "sLengthMenu": "１ページ _MENU_ 件表示",
+		        "sInfo": "_TOTAL_ 件中 _START_ ～ _END_ 件を表示",
+		        "sSearch": "検索：",
+		        "sInfoFiltered": "( 全 _MAX_ 件 )",
+		        "sInfoEmpty": "該当するデータがありません"
+		    }
+	    });
+        
+	    //add speach search
+	    $(".dataTables_filter :text").attr("x-webkit-speech", "");
+
+	    $(window).resize(function () {
+	        var oSettings = oTable.fnSettings();
+	        oSettings.oScroll.sY = setHeight();
+	        oTable.fnDraw();
+	    });
+
+    });
+
+    function setHeight() {
+        return Math.floor($(window).height() - 160) + "px";
+    }
+    </script>
+
+
+    }

@@ -1,0 +1,49 @@
+﻿@model StopSagi.Models.blackList
+
+@{
+    ViewBag.Title = "Prevention";
+}
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>ブラックリストへの追加</legend>
+        <p>被害にあわれた方・会いそうになった方、情報をお寄せください！</p>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.address_type,"種別")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.address_type,
+            new SelectListItem[] {
+                new SelectListItem() { Value="1", Text="電話番号" },
+                new SelectListItem() { Value="2", Text="口座情報" },
+                new SelectListItem() { Value="3", Text="住所" }
+              },
+              new { @class = "list" } // そのほかの属性
+            )
+
+            <br/>
+            @Html.TextAreaFor(model => model.address)
+            @Html.ValidationMessageFor(model => model.address)
+            <br/>
+            @Html.LabelFor(model => model.comment,"コメント")
+            @Html.TextAreaFor(model => model.comment)
+            @Html.ValidationMessageFor(model => model.comment)
+
+        </div>
+
+        <p>
+            <input type="submit" value="作成" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("一覧へ戻る", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

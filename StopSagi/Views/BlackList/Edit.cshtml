@@ -1,0 +1,55 @@
+﻿@model StopSagi.Models.blackList
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    
+    <fieldset>
+        <legend>ブラックリストの編集</legend>
+
+        @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.ins_date)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.address_type,"種別")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.address_type,
+            new SelectListItem[] {
+                new SelectListItem() { Value="1", Text="電話番号" },
+                new SelectListItem() { Value="2", Text="口座情報" },
+                new SelectListItem() { Value="3", Text="住所" }
+              },
+              new { @class = "list" } // そのほかの属性
+            )
+
+            <br/>
+            @Html.TextAreaFor(model => model.address)
+            @Html.ValidationMessageFor(model => model.address)
+            <br/>
+            @Html.LabelFor(model => model.comment,"コメント")
+            @Html.TextAreaFor(model => model.comment)
+            @Html.ValidationMessageFor(model => model.comment)
+
+        </div>
+
+        <p>
+            <input type="submit" value="　保存　" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("戻る", "Address","Default",null,null)
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
